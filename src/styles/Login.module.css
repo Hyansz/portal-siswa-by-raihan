@@ -40,3 +40,29 @@
     padding: 0 15px;
     color: #2f313a;
 }
+
+.h4_check {
+    color: #2f313a;
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.inputsubmit {
+    border: 1px solid #4318ff;
+    background-color: transparent;
+    width: 100%;
+    height: 50px;
+    border-radius: 15px;
+    padding: 0 15px;
+    color: #2f313a;
+    font-weight: bold;
+}
+
+.inputsubmit:hover {
+    color: #fff;
+    border: 1px solid #fff;
+    background-color: #4318ff;
+    width: 100%;
+    transition: all .3s ease;
+}

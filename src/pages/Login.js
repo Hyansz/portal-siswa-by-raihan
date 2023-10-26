@@ -29,9 +29,28 @@ export default function loginTemplate() {
                 <input
                     className={`${dmSans.className} ${styles.inputvalue}`}
                     type="password"
-                    password=""
                     required=""
                     placeholder="******"
+                />
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-around" }}>
+                    <div style={{ display: "flex", flexDirection: "row", gap: "1px" }}>
+                        <input
+                            className={`${dmSans.className}`}
+                            type="checkbox"
+                            required=""
+                            />
+                        <h4 className={`${dmSans.className} ${styles.h4_check}`}>
+                            Keep me logged in
+                        </h4>
+                    </div>
+                    <h4 className={`${dmSans.className} ${styles.h4_check}`}>
+                        forgot password
+                    </h4>
+                </div>
+                <input
+                    className={`${dmSans.className} ${styles.inputsubmit}`}
+                    type="submit"
+                    required=""
                 />
             </div>
         </div>

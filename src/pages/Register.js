@@ -29,7 +29,6 @@ export default function loginTemplate() {
                     type="date"
                     password=""
                     required=""
-                    // placeholder="mm/dd/yyyy"
                 />
                 <h4 className={`${dmSans.className} ${styles.h4_value}`}>
                     Email*
