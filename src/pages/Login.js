@@ -33,7 +33,7 @@ export default function loginTemplate() {
                     placeholder="******"
                 />
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-around", marginTop: "30px" }}>
-                    <div style={{ display: "flex", flexDirection: "row", gap: "1px" }}>
+                    <div style={{ display: "flex", flexDirection: "row", gap: "6px" }}>
                         <input
                             className={`${dmSans.className}`}
                             type="checkbox"
