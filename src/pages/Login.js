@@ -32,7 +32,7 @@ export default function loginTemplate() {
                     required=""
                     placeholder="******"
                 />
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-around" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-around", marginTop: "30px" }}>
                     <div style={{ display: "flex", flexDirection: "row", gap: "1px" }}>
                         <input
                             className={`${dmSans.className}`}
