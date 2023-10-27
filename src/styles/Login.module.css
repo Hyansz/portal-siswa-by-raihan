@@ -49,20 +49,40 @@
 }
 
 .inputsubmit {
-    border: 1px solid #4318ff;
-    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    background-color: #4318ff;
     width: 100%;
     height: 50px;
     border-radius: 15px;
     padding: 0 15px;
-    color: #2f313a;
     font-weight: bold;
+    transition: all .5s ease;
 }
 
 .inputsubmit:hover {
+    border: 1px solid #4318ff;
+    background-color: transparent;
+    color: #2f313a;
+    width: 100%;
+    transition: all .3s ease;
+}
+
+.inputgoogle {
     color: #fff;
     border: 1px solid #fff;
     background-color: #4318ff;
+    border-radius: 15px;
+    padding: 10px 15px;
+    margin: 30px;
+    font-weight: bold;
+    transition: all .5s ease;
+}
+
+.inputgoogle:hover {
+    border: 1px solid #4318ff;
+    background-color: transparent;
+    color: #2f313a;
     width: 100%;
     transition: all .3s ease;
 }

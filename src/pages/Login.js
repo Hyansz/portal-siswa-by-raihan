@@ -11,6 +11,11 @@ export default function loginTemplate() {
                 <p className={`${dmSans.className} ${styles.p1}`}>
                     Enter your email and password to sign in!
                 </p>
+                <div>
+                    <a href="" className={`${dmSans.className} ${styles.inputgoogle}`}>
+                        Test
+                    </a>
+                </div>
                 <h4 className={`${dmSans.className} ${styles.h4_value}`}>
                     Email
                     <span>*</span>
