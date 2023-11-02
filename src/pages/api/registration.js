@@ -1,6 +1,31 @@
 import mongoose from "mongoose";
 import { v4 as uuid } from "uuid";
 
+const userSchema = new mongoose.Schema({
+    id: {
+        type: String,
+        require: true,
+    },
+    name: {
+        type: String,
+        require: true,
+    },
+    nis: {
+        type: String,
+        require: true,
+    },
+    password: {
+        type: String,
+        require: true,
+    },
+    token: {
+        type: String,
+        default: "",
+    },
+});
+
+const Users = mongoose.models.Member || mongoose.model("User", userSchema);
+
 const connectMongoDB = async () => {
     try {
         await mongoose.connect(
@@ -16,32 +41,6 @@ const connectMongoDB = async () => {
 };
 
 connectMongoDB();
-
-const Users = mongoose.model(
-    "user", // akan jadi collection dengan nama users ketika disubmit di db
-    new mongoose.Schema({
-        id: {
-            type: String,
-            require: true,
-        },
-        name: {
-            type: String,
-            require: true,
-        },
-        password: {
-            type: String,
-            require: true,
-        },
-        nis: {
-            type: String,
-            require: true,
-        },
-        token: {
-            type: String,
-            default: "",
-        },
-    })
-);
 
 export default async function handler(req, res) {
     try {
