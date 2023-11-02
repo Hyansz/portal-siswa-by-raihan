@@ -3,17 +3,29 @@ import { dmSans } from '@/styles/fonts';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-export default function Login() {
+export default function Daftar() {
   const router = useRouter();
 
+  const [name, setName] = useState('');
   const [nis, setNis] = useState('');
   const [password, setPassword] = useState('');
+
   return (
     <div className={`${styles.container} ${dmSans.className}`}>
       <div className={styles.card}>
-        <h1>Sign</h1>
-        <div className={styles.summary}>
-          Enter your email and password to sign in!
+        <h1>Daftar</h1>
+        <div className={styles.summary}>Masukkan data secara lengkap</div>
+        <div className={styles.fieldInput}>
+          <div className={styles.label}>
+            Name<span className={styles.star}>*</span>
+          </div>
+          <input
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+            className={styles.input}
+            placeholder="your full name"
+          />
         </div>
         <div className={styles.fieldInput}>
           <div className={styles.label}>
@@ -40,43 +52,30 @@ export default function Login() {
             }}
           />
         </div>
-        <div className={styles.forgot}>
-          <input
-            placeholder="******"
-            type="checkbox"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-          <div className={styles.forgot2}>
-            Ingat Saya
-          </div>
-        </div>
         <button
           className={styles.buttonPrimary}
-          onClick={async (e) => {
-            const data = { nis, password };
+          onClick={async () => {
+            const data = { name, nis, password };
             console.log('click daftar by: ', data);
 
             try {
-              const res = await fetch('/api/login', {
+              const res = await fetch('/api/registration', {
                 method: 'POST', // Corrected the typo in 'method'
                 body: JSON.stringify(data), // Assuming 'data' is an object that you want to send as JSON
                 headers: {
                   'Content-Type': 'application/json', // Specifying the content type as JSON
                 },
               });
-              const responseData = await res.json();
+
               if (res.ok) {
                 // Periksa apakah respons memiliki status code 200 (OK)
-                // Mendapatkan data JSON dari respons
-                console.log('responseData: ', responseData);
-                alert('sukses login');
-                router.push('/dashboard');
+                const responseData = await res.json(); // Mendapatkan data JSON dari respons
+                console.log(responseData);
+                alert('Data sudah sukses didaftarkan');
+                router.push('/login');
               } else {
                 console.error('Gagal melakukan permintaan:', res.status);
-                console.log(responseData);
-                alert(responseData.message);
+                alert('Data gagal didaftarkan');
               }
             } catch (error) {
               console.log('error: ', error);
@@ -84,7 +83,7 @@ export default function Login() {
             }
           }}
         >
-          Sign In
+          Daftar
         </button>
       </div>
     </div>
