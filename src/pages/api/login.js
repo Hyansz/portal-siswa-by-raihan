@@ -56,7 +56,7 @@ export default async function handler(req, res) {
     // lengkapi data yg kurang
     const token = generateRandomToken(10);
 
-    setCookie('token', token, { req, res, maxAge: 60 * 60 * 24 * 30 }); // 1 bulan
+    setCookie('token', token, { req, res, maxAge: 60 * 60 * 24 * 7 }); // 1 bulan
 
     // jika sudah sesuai simpan
     const users = await Users.findOneAndUpdate(

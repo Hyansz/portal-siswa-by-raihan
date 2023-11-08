@@ -13,16 +13,15 @@ export default function Home() {
         if (myCookieValue) {
           const data = { token: myCookieValue };
           const res = await fetch('/api/checkToken', {
-            method: 'POST', // Corrected the typo in 'method'
-            body: JSON.stringify(data), // Assuming 'data' is an object that you want to send as JSON
+            method: 'POST',
+            body: JSON.stringify(data),
             headers: {
-              'Content-Type': 'application/json', // Specifying the content type as JSON
+              'Content-Type': 'application/json',
             },
           });
 
           if (res.ok) {
-            // Periksa apakah respons memiliki status code 200 (OK)
-            const responseData = await res.json(); // Mendapatkan data JSON dari respons
+            const responseData = await res.json();
             console.log(responseData);
             router.push('/dashboard');
           } else {
@@ -30,7 +29,7 @@ export default function Home() {
             router.push('/login');
           }
         } else {
-          router.push('/login');
+          router.push('/daftar');
         }
       } catch (error) {
         console.log('error: ', error);
@@ -41,6 +40,19 @@ export default function Home() {
     run();
   }, [router]);
 
+  useEffect(() => {
+    const myCookieValue = getCookie('token');
+    if (myCookieValue) {
+      router.push('/dashboard');
+    }
+  }, []);
+
+  useEffect(() => {
+    const myCookieValue = getCookie('token');
+    if (!myCookieValue) {
+      router.push('/login');
+    }
+  }, []);
+
   return <></>;
 }
-
