@@ -12,6 +12,7 @@ export default function Login() {
   const [rememberMe, setRememberMe] = useState(false);
   const [rememberedNis, setRememberedNis] = useState('');
   const [rememberedPassword, setRememberedPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const checkLoginStatus = async () => {
@@ -57,6 +58,8 @@ export default function Login() {
 
     const data = { nis, password };
 
+    setIsLoading(true); // Aktifkan efek loading
+
     try {
       const res = await fetch('/api/login', {
         method: 'POST',
@@ -96,8 +99,10 @@ export default function Login() {
     } catch (error) {
       console.log('error: ', error);
       alert('Terjadi Kesalahan, harap hubungi tim support');
+    } finally {
+      setIsLoading(false); // Matikan efek loading setelah permintaan selesai
     }
-  };
+  }
 
 
   return (
@@ -142,7 +147,7 @@ export default function Login() {
           className={styles.buttonPrimary}
           onClick={handleLogin}
         >
-          Sign In
+          {isLoading ? 'Loading...' : 'Sign In'}
         </button>
       </div>
     </div>
