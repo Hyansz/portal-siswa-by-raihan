@@ -31,7 +31,7 @@ export default async function handler(req, res) {
     if (nis.length !== 5) {
       return res.status(400).json({
         error: true,
-        message: 'nis harus 5 karakter',
+        message: 'NIS harus 5 karakter',
       });
     }
 
