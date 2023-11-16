@@ -7,7 +7,7 @@ export default function Daftar() {
     const router = useRouter();
 
     const [name, setName] = useState("");
-    const [email, setEmail] = useState(""); // Mengganti nis menjadi email
+    const [nis, setNis] = useState(""); // Mengganti nis menjadi nis
     const [password, setPassword] = useState("");
 
     return (
@@ -31,14 +31,14 @@ export default function Daftar() {
                 </div>
                 <div className={styles.fieldInput}>
                     <div className={styles.label}>
-                        Email<span className={styles.star}>*</span>{" "}
-                        {/* Mengganti NIS menjadi Email */}
+                        NIS<span className={styles.star}>*</span>{" "}
+                        {/* Mengganti NIS menjadi nis */}
                     </div>
                     <input
                         className={styles.input}
-                        placeholder="example@example.com" // Mengganti placeholder sesuai dengan format email
+                        placeholder="example@example.com" // Mengganti placeholder sesuai dengan format nis
                         onChange={(e) => {
-                            setEmail(e.target.value);
+                            setNis(e.target.value);
                         }}
                     />
                 </div>
@@ -58,7 +58,7 @@ export default function Daftar() {
                 <button
                     className={styles.buttonPrimary}
                     onClick={async () => {
-                        const data = { name, email, password }; // Mengganti nis menjadi email
+                        const data = { name, nis, password }; // Mengganti nis menjadi nis
                         console.log("click daftar by: ", data);
 
                         try {
