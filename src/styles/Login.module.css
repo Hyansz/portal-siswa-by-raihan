@@ -85,17 +85,20 @@
 
 .boxForgot {
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    margin: 20px;
+}
+
+.boxForgot2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
 }
 
 .forgot {
     display: flex;
     align-items: center;
-}
-
-.forgot2 {
-    margin: 40px 0;
 }
 
 .forgot2 a {
