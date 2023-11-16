@@ -36,7 +36,7 @@ export default function Daftar() {
                     </div>
                     <input
                         className={styles.input}
-                        placeholder="example@example.com" // Mengganti placeholder sesuai dengan format nis
+                        placeholder="12345" // Mengganti placeholder sesuai dengan format nis
                         onChange={(e) => {
                             setNis(e.target.value);
                         }}
