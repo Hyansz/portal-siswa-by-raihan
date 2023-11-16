@@ -55,11 +55,6 @@ export default function Daftar() {
                         }}
                     />
                 </div>
-                <div className={styles.boxForgot}>
-                    <div className={styles.forgot3}>
-                        <a href='./login'>Sudah Punya Akun?</a>
-                    </div>
-                </div>
                 <button
                     className={styles.buttonPrimary}
                     onClick={async () => {
@@ -99,6 +94,11 @@ export default function Daftar() {
                 >
                     Daftar
                 </button>
+                <div className={styles.boxForgot3}>
+                    <div className={styles.forgot3}>
+                        <a href='./login'>Sudah Punya Akun?</a>
+                    </div>
+                </div>
             </div>
 
             <div className={styles.card3}>
