@@ -3,6 +3,10 @@
   background: #FFF;
 }
 
+.sidebar h1 {
+  text-align: center;
+}
+
 .title {
   color: #2B3674;
 font-size: 36px;
@@ -18,6 +22,35 @@ letter-spacing: -0.72px;
   align-items: start;
   justify-content: left;
   height: 100vh; 
+}
+
+.boxMenu {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.menu button {
+  text-decoration: none;
+  background-color: #a618ff;
+  border-radius: 30px;
+  text-align: center;
+  color: #FFF;
+  cursor: pointer;
+  font-size: 13px;
+  width: 100%;
+  transition: all .3s ease;
+  padding: 10px 60px;
+  gap: 20px;
+  font-size: 15px;
+  border: none;
+}
+
+.menu button:hover {
+  background-color: transparent;
+  border: 1px solid #a618ff;
+  color: #a618ff;
 }
 
 .page{

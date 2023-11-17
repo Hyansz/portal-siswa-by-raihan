@@ -26,7 +26,6 @@ export default function Dasbor() {
 
           let myUser;
           await postDataApi(
-            myToken,
             '/api/checkToken',
             data,
             (successData) => {
@@ -50,7 +49,6 @@ export default function Dasbor() {
 
           if (myUser && myUser.role === 1) {
             await getDataApi(
-              myToken,
               '/api/listUsers',
               (dataSuccess) => {
                 console.log('dataSuccess: ', dataSuccess);
@@ -84,23 +82,40 @@ export default function Dasbor() {
           }}
         >
           <h1>Dasboard</h1>
+          <div className={styles.boxMenu}>
+            <div className={styles.menu}>
+              <a href=''>
+                <button>Kelas</button>
+              </a>
+            </div>
+            <div className={styles.menu}>
+            <a href=''>
+                <button>Tugas</button>
+              </a>
+            </div>
+          </div>
         </div>
         <div>
           <ul>
             <li style={{ listStyleType: 'none' }}>
               <button
                 style={{ fontWeight: '18px' }}
-                onClick={async () => {
-                  const myCookieValue = getCookie('token');
-                  console.log('myCookieValue: ', myCookieValue);
-                  if (myCookieValue) {
-                    const data = { token: myCookieValue };
+                onClick={ async () => {
+                  let myToken = '';
+                  if (localStorage.getItem('keepLogin') === 'true') {
+                    myToken = getCookie('token');
+                  } else {
+                    sessionStorage.setItem('token', '');
+                    router.push('/login');
+                    return;
+                  }
+                  if (myToken) {
+                    const data = { token: myToken };
                     await postDataApi(
-                      myCookieValue,
                       '/api/logout',
                       data,
                       (successData) => {
-                        router.push('/login'); // Specifying the content type as JSON
+                        router.push('/login');
                       },
                       (failData) => {
                         console.error('Gagal melakukan permintaan:', failData);
@@ -134,7 +149,7 @@ export default function Dasbor() {
             padding: '16px',
           }}
         >
-          <span style={{ fontWeight: '700', fontSize: '28px' }}>
+          <span style={{ fontWeight: '700', fontSize: '28px', margin: 'auto 20px' }}>
             {user.name}({user.roleName})
           </span>
         </div>
