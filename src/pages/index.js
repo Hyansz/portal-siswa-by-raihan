@@ -35,7 +35,7 @@ export default function Home() {
             router.push('/login');
           }
         } else {
-          router.push('/daftar');
+          router.push('/login');
         }
       } catch (error) {
         console.log('error: ', error);
@@ -44,20 +44,6 @@ export default function Home() {
     };
 
     run();
-  }, [router]);
-
-  useEffect(() => {
-    const myCookieValue = getCookie('token');
-    if (myCookieValue) {
-      router.push('/dashboard');
-    }
-  }, [router]);
-
-  useEffect(() => {
-    const myCookieValue = getCookie('token');
-    if (!myCookieValue) {
-      router.push('/login');
-    }
   }, [router]);
 
   return <></>;

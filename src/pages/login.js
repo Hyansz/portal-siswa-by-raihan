@@ -2,7 +2,6 @@ import styles from '@/styles/Login.module.css';
 import { dmSans } from '@/styles/fonts';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { getCookie, setCookie } from 'cookies-next';
 
 export default function Login() {
   const router = useRouter();
@@ -12,30 +11,9 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [isKeepLogin, setKeepLogin] = useState(false);
 
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      const myCookieValue = getCookie('token');
-      if (myCookieValue) {
-        router.push('/dashboard');
-      }
-    };
-
-    checkLoginStatus();
-  }, [router]);
-
-  useEffect(() => {
-    const lastInput = JSON.parse(localStorage.getItem('lastInput'));
-  
-    if (lastInput) {
-      setNis(lastInput.nis);
-      setPassword(lastInput.password);
-    }
-  }, []);
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-
-    const data = { nis, password };
+  const handleRegistration = async () => {
+    const data = { nis, password, isKeepLogin };
+    console.log('click daftar by: ', data);
 
     setIsLoading(true);
 
@@ -48,35 +26,27 @@ export default function Login() {
         },
       });
 
-      if (res.ok) {
-        const responseData = await res.json();
-        alert('Sukses login');
+      const responseData = await res.json(); // Mendapatkan data JSON dari respons
 
-        console.log('responseData: ', responseData); //ex: {token: 'Id2Qs257T0', isKeepLogin: true}
-        localStorage.setItem('keepLogin', responseData.isKeepLogin);
-        if (!responseData.isKeepLogin) {
-          sessionStorage.setItem('token', responseData.token);
+      if (res.ok) {
+        // Periksa apakah respons memiliki status code 200 (OK)
+        console.log('responsData: ',responseData);
+        localStorage.setItem('keepLogin', responseData.isKeepLogin)
+
+        if(!responseData.isKeepLogin) {
+          sessionStorage.setItem('token',responseData.token)
         }
 
-        localStorage.setItem('lastInput', JSON.stringify({ nis, password, isKeepLogin }));
-
+        alert('Berhasil login');
         router.push('/dashboard');
       } else {
         console.error('Gagal melakukan permintaan:', res.status);
-        const responseData = await res.json();
-        if (responseData.message === 'Password not found') {
-          alert('Password tidak ditemukan');
-        } else if (responseData.message === 'nis not found') {
-          alert('nis tidak ditemukan');
-        } else {
-          alert(responseData.message);
-        }
+        console.log(responseData)
+        alert(responseData.message);
       }
     } catch (error) {
       console.log('error: ', error);
       alert('Terjadi Kesalahan, harap hubungi tim support');
-    } finally {
-      setIsLoading(false);
     }
   }
 
@@ -124,7 +94,7 @@ export default function Login() {
         </div>
         <button
           className={styles.buttonPrimary}
-          onClick={handleLogin}
+          onClick={handleRegistration}
         >
           {isLoading ? 'Loading...' : 'Sign In'}
         </button>
