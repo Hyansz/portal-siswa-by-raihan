@@ -11,6 +11,27 @@ export default function Dasbor() {
   const [user, setUser] = useState({ id: '', name: '' });
   const router = useRouter();
   const [allUsers, setAllUsers] = useState([]);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        // Gantilah '/api/getTasks' dengan endpoint yang sesuai di backend Anda
+        const tasksData = await getDataApi('/api/getTasks');
+
+        // Tampilkan data tugas ke konsol
+        console.log('tasksData: ', tasksData);
+
+        // Setel state tasks dengan data tugas dari server
+        setTasks(tasksData.tasks);
+      } catch (error) {
+        console.error('Gagal mengambil data tugas:', error);
+      }
+    };
+
+    // Panggil fungsi fetchTasks
+    fetchTasks();
+  }, []);
 
   const handleRegistration = async () => {
     let myToken = '';
@@ -136,7 +157,7 @@ export default function Dasbor() {
         </div>
         <div className={styles.boxMenu2}>
             <div className={styles.menu }>
-              <Link href="./login" className={styles.navItem2}>
+              <Link href="./login" className={styles.navItem2} onClick={handleRegistration}>
                 <p>Log Out</p>
               </Link>
             </div>
@@ -196,6 +217,42 @@ export default function Dasbor() {
                             </tr>
                           );
                         })}
+                    </tbody>
+                  </table>
+                </div>
+                <div style={{ textAlign: 'center', backgroundColor: '#fff', padding: '1px' }}>
+                  <p>Data Tugas</p>
+                  <hr style={{ margin: '20px' }}/>
+                </div>
+                <div style={{ width: '100%' }}>
+                  <table
+                    style={{
+                      width: '100%',
+                      backgroundColor: '#fff',
+                      border: '1px',
+                      padding: '10px 20px'
+                    }}
+                  >
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Deadline</th>
+                        <th>Link</th>
+                        <th>Note</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {tasks &&
+                        tasks.map((task, index) => (
+                          <tr key={index} style={{ padding: '8px' }}>
+                            <td>{task.date}</td>
+                            <td>{task.deadline}</td>
+                            <td>{task.link}</td>
+                            <td>{task.note}</td>
+                            <td>{task.status}</td>
+                          </tr>
+                        ))}
                     </tbody>
                   </table>
                 </div>
