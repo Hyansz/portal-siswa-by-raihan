@@ -11,27 +11,6 @@ export default function Dasbor() {
   const [user, setUser] = useState({ id: '', name: '' });
   const router = useRouter();
   const [allUsers, setAllUsers] = useState([]);
-  const [tasks, setTasks] = useState([]);
-
-  useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        // Gantilah '/api/getTasks' dengan endpoint yang sesuai di backend Anda
-        const tasksData = await getDataApi('/api/getTasks');
-
-        // Tampilkan data tugas ke konsol
-        console.log('tasksData: ', tasksData);
-
-        // Setel state tasks dengan data tugas dari server
-        setTasks(tasksData.tasks);
-      } catch (error) {
-        console.error('Gagal mengambil data tugas:', error);
-      }
-    };
-
-    // Panggil fungsi fetchTasks
-    fetchTasks();
-  }, []);
 
   const handleRegistration = async () => {
     let myToken = '';
