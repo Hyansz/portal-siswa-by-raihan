@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const taskSchema = new mongoose.Schema({
     date: {
@@ -15,17 +15,26 @@ const taskSchema = new mongoose.Schema({
     },
     note: {
         type: String,
+        default: "",
     },
     teacher_id: {
         type: String,
         required: true,
     },
     status: {
+        // 0: tidak aktif, sedangkan 1: aktif
         type: Number,
         default: 1,
     },
 });
 
-const Task = mongoose.model("Task", taskSchema);
+let TaskModel;
 
-module.exports = Task;
+// Pastikan bahwa model 'Task' belum ada sebelum membuatnya
+try {
+    TaskModel = mongoose.model("Task");
+} catch (error) {
+    TaskModel = mongoose.model("Task", taskSchema);
+}
+
+export default TaskModel;
