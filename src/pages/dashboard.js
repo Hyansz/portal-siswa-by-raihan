@@ -134,13 +134,13 @@ export default function Dasbor() {
           <h1>Dasboard</h1>
           <div className={styles.boxMenu}>
             <div className={styles.menu}>
-              <Link href="" className={styles.navItem}>
+              <Link href="./dashboard" className={styles.navItem}>
                 <div className={styles.icon}>
                   <i class="ri-school-line"></i>
                 </div>
                 <p>Kelas</p>
               </Link>
-              <Link href="" className={styles.navItem}>
+              <Link href="./tasks" className={styles.navItem}>
                 <div className={styles.icon}>
                   <i class="ri-pencil-line"></i>
                 </div>
@@ -217,42 +217,6 @@ export default function Dasbor() {
                             </tr>
                           );
                         })}
-                    </tbody>
-                  </table>
-                </div>
-                <div style={{ textAlign: 'center', backgroundColor: '#fff', padding: '1px' }}>
-                  <p>Data Tugas</p>
-                  <hr style={{ margin: '20px' }}/>
-                </div>
-                <div style={{ width: '100%' }}>
-                  <table
-                    style={{
-                      width: '100%',
-                      backgroundColor: '#fff',
-                      border: '1px',
-                      padding: '10px 20px'
-                    }}
-                  >
-                    <thead>
-                      <tr>
-                        <th>Date</th>
-                        <th>Deadline</th>
-                        <th>Link</th>
-                        <th>Note</th>
-                        <th>Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {tasks &&
-                        tasks.map((task, index) => (
-                          <tr key={index} style={{ padding: '8px' }}>
-                            <td>{task.date}</td>
-                            <td>{task.deadline}</td>
-                            <td>{task.link}</td>
-                            <td>{task.note}</td>
-                            <td>{task.status}</td>
-                          </tr>
-                        ))}
                     </tbody>
                   </table>
                 </div>
