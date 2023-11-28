@@ -1,4 +1,5 @@
-import Tasks from "@/models/tasks";
+// src/api/user.js
+
 import Users from "@/models/users";
 import { connectMongoDB } from "@/db/mongoDB";
 connectMongoDB();
@@ -11,40 +12,29 @@ export default async function handler(req, res) {
                 .json({ error: true, message: "Metode tidak diizinkan" });
         }
 
-        // Pemeriksaan token di headers Authorization
+        // Ambil data pengguna berdasarkan token
         const token = req.headers.authorization;
-
-        console.log("token:", token);
         if (!token) {
             return res
                 .status(400)
                 .json({ error: true, message: "Tidak ada token" });
         }
 
-        // Cek apakah user ada
         const user = await Users.findOne({ token });
-        console.log("user: ", user);
 
-        // Jika user tidak ditemukan
-        if (!user || !user.nis) {
-            return res.status(400).json({
-                error: true,
-                message: "Token tidak valid",
-            });
+        if (!user) {
+            return res
+                .status(404)
+                .json({ error: true, message: "Pengguna tidak ditemukan" });
         }
 
-        // Cek apakah sebagai admin
-        if (user.role !== 1) {
-            return res.status(400).json({
-                error: true,
-                message:
-                    "Anda tidak memiliki hak akses/authorization sebagai admin",
-            });
-        }
+        // Mengembalikan data nama dan token
+        const userData = {
+            nama: user.nama,
+            token: user.token,
+        };
 
-        const tasks = await Tasks.find({});
-
-        return res.status(200).json(tasks);
+        return res.status(200).json(userData);
     } catch (error) {
         console.error("Error:", error);
         return res

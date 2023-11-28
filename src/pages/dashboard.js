@@ -17,9 +17,7 @@ export default function Dasbor() {
     if (localStorage.getItem('keepLogin') === 'true') {
       myToken = getCookie('token');
     } else {
-      sessionStorage.setItem('token', '');
-      router.push('/login');
-      return;
+      myToken = sessionStorage.getItem('token', '');
     }
     if (myToken) {
       const data = { token: myToken };
@@ -88,6 +86,8 @@ export default function Dasbor() {
               }
             );
           }
+        } else {
+          router.push('/login');
         }
       } catch (error) {
         console.log('error: ', error);
@@ -135,7 +135,7 @@ export default function Dasbor() {
           </div>
         </div>
         <div className={styles.boxMenu2}>
-            <div className={styles.menu }>
+            <div className={styles.menu}>
               <Link href="./login" className={styles.navItem2} onClick={handleRegistration}>
                 <p>Log Out</p>
               </Link>
